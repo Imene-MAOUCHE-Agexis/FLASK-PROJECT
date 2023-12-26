@@ -1,0 +1,55 @@
+<!-- templates/contacts.html -->
+{% extends "base.html" %}
+
+{% block title %}Liste des Contacts{% endblock %}
+
+{% block content %}
+  <div class="mb-3">
+    <!-- Add contact button above the table -->
+    <a href="{{ url_for('add_contact') }}" class="btn btn-primary">
+      <img src="{{ url_for('static', filename='icones/add_icon.jpg') }}" alt="Add Icon" class="icon" style="width: 20px; height: 20px;">
+      Ajouter un Contact
+    </a>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center">
+    <h2>Liste des Contacts</h2>
+    <!-- You can add any additional elements or buttons on the side here -->
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Prénom</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Email</th>
+        <th scope="col">Téléphone</th>
+        <th scope="col">Adresse</th>
+        <th scope="col">Actions</th>  <!-- New column for actions -->
+      </tr>
+    </thead>
+    <tbody>
+      {% for contact in contacts %}
+        <tr>
+          <td>{{ contact.prenom }}</td>
+          <td>{{ contact.nom }}</td>
+          <td>{{ contact.email }}</td>
+          <td>{{ contact.telephone }}</td>
+          <td>{{ contact.adresse }}</td>
+          <td>
+            <!-- Edit and delete contact icons without borders -->
+            <div class="btn-group">
+              <a href="{{ url_for('edit_contact', id=contact.contact_id) }}" class="btn btn-warning btn-sm outline-0">
+                <img src="{{ url_for('static', filename='icones/edit_icon.jpg') }}" alt="Edit Icon" class="icon" style="width: 20px; height: 20px;">
+              </a>
+              
+              <a href="{{ url_for('delete_contact', id=contact.contact_id) }}" class="btn btn-danger btn-sm outline-0">
+                <img src="{{ url_for('static', filename='icones/delete_icon.jpg') }}" alt="Delete Icon" class="icon" style="width: 20px; height: 20px;">
+              </a>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

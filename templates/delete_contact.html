@@ -1,0 +1,16 @@
+<!-- templates/delete_contact.html -->
+{% extends "base.html" %}
+
+{% block title %}Supprimer le Contact{% endblock %}
+
+{% block content %}
+  <h2>Supprimer le Contact</h2>
+
+  <p>Voulez-vous vraiment supprimer le contact {{ contact.prenom }} {{ contact.nom }} ?</p>
+
+  <form method="POST">
+    <!-- Add any necessary form styling or structure based on your needs -->
+    <button type="submit" class="btn btn-danger">Confirmer la suppression</button>
+    <a href="{{ url_for('contacts') }}" class="btn btn-secondary">Annuler</a>
+  </form>
+{% endblock %}
